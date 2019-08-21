@@ -22,7 +22,7 @@ def register():
 
     # pay_file = request.files
 
-    payload = request.get_json()
+    payload = request.form.get_json()
     # dict_file = pay_file.to_dict()
 
     print(payload, "payload in user")
