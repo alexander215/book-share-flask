@@ -3,6 +3,8 @@ from flask_cors import CORS
 from flask_login import LoginManager
 import models
 
+from api.user import user
+
 DEBUG = True
 PORT = 8000
 
@@ -12,6 +14,8 @@ app = Flask(__name__, static_url_path="", static_folder="static")
 
 app.secret_key = "NOTbutMAYBEYESaginBUTnoforSUREnevermindbldrgrbo87"
 login_manager.init_app(app)
+
+app.register_blueprint(user)
 
 @app.before_request
 def before_request():
@@ -25,7 +29,6 @@ def after_request(response):
     return response
 
 @app.route("/")
-
 def index():
     return 'Narek and Alex'
 
