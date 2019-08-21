@@ -9,12 +9,12 @@ DEBUG = True
 PORT = 8000
 
 login_manager = LoginManager()
-
 app = Flask(__name__, static_url_path="", static_folder="static")
 
 app.secret_key = "NOTbutMAYBEYESaginBUTnoforSUREnevermindbldrgrbo87"
 login_manager.init_app(app)
 
+CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
 app.register_blueprint(user)
 
 @app.before_request

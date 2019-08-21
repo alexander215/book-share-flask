@@ -1,5 +1,6 @@
 import models
 
+#for the image upload
 import os
 import sys
 import secrets
@@ -22,9 +23,9 @@ def register():
 
     # pay_file = request.files
 
-    payload = request.form.get_json()
+    payload = request.form.to_dict()
     # dict_file = pay_file.to_dict()
-
+    payload['photo'] = 'default'
     print(payload, "payload in user")
     # print(dict_file, "dict_file in user")
 
