@@ -14,6 +14,13 @@ app = Flask(__name__, static_url_path="", static_folder="static")
 app.secret_key = "NOTbutMAYBEYESaginBUTnoforSUREnevermindbldrgrbo87"
 login_manager.init_app(app)
 
+@login_manager.user_loader
+def load_user(userid):
+    try:
+        return models.User.get(models.User.id == userid)
+    except models.DoesNotExist:
+        return None
+
 CORS(user, origins=['http://localhost:3000'], supports_credentials=True)
 app.register_blueprint(user)
 
