@@ -89,6 +89,14 @@ def login():
     except models.DoesNotExist:
         return jsonify(data={}, status={"code": 401, "message": "Username or Password is incorrect"})
 
+@user.route("/", methods={"GET"})
+def get_users():
+    try:
+        users = [model_to_dict(user) for user in models.User.select()]
+        return jsonify(data=users, status={"code":200, "message": "Success"})
+    except models.DoesNotExist:
+        return "except under get route"
+
 @user.route("/<id>", methods=["Delete"])
 def delete_user(id):
     query = models.User.delete().where(models.User.id == id)
