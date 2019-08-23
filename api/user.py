@@ -89,6 +89,18 @@ def login():
     except models.DoesNotExist:
         return jsonify(data={}, status={"code": 401, "message": "Username or Password is incorrect"})
 
+@user.route("/<id>", methods=["PUT"])
+def update_user(id):
+    payload = request.get_json()
+
+    query = models.User.update(**payload).where(models.User.id == id)
+    query.execute()
+
+    updated_user = models.User.get_by_id(id)
+
+    # return "Editttttttt....."
+    return jsonify(data=model_to_dict(updated_user), status={"code": 200, "message": "Success"})
+
 @user.route("/", methods={"GET"})
 def get_users():
     try:
