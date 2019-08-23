@@ -89,4 +89,9 @@ def login():
     except models.DoesNotExist:
         return jsonify(data={}, status={"code": 401, "message": "Username or Password is incorrect"})
 
+@user.route("/<id>", methods=["Delete"])
+def delete_user(id):
+    query = models.User.delete().where(models.User.id == id)
+    query.execute()
 
+    return "User has been deleted"
