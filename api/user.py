@@ -76,8 +76,9 @@ def login():
     payload =request.get_json()
     print(payload, "payload in login")
     try:
-        user = models.User.get(models.User.email == payload["email"])
-        user_dict = model_to_dict(user)
+        user = models.User.get(models.User.username == payload["username"])
+        print(user, "this is the found user!!!!!")
+        user_dict = model_to_dict(user)    
         if (check_password_hash(user_dict["password"], payload["password"])):
             del user_dict["password"]
             login_user(user)
