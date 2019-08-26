@@ -115,3 +115,10 @@ def delete_user(id):
     query.execute()
 
     return "User has been deleted"
+
+@user.route('/<id>', methods=["GET"])
+def get_user(id):
+    user = models.User.get_by_id(id)
+    print(user, "user in /id route")
+
+    return jsonify(data=model_to_dict(user))
