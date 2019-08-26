@@ -4,9 +4,11 @@ import os
 
 from playhouse.db_url import connect
 
-DATABASE = connect(os.environ.get('DATABASE_URL'))
+# work on heroku
+# DATABASE = connect(os.environ.get('DATABASE_URL'))
 
-# DATABASE = SqliteDatabase("bookshare.sqlite")
+# work locally
+DATABASE = SqliteDatabase("bookshare.sqlite")
 
 class User(UserMixin, Model):
     username = CharField()
