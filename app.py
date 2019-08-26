@@ -2,6 +2,7 @@ from flask import Flask, g
 from flask_cors import CORS
 from flask_login import LoginManager
 import models
+import os
 
 from api.user import user
 
@@ -38,6 +39,12 @@ def after_request(response):
 @app.route("/")
 def index():
     return 'Narek and Alex'
+
+
+
+if 'ON_HEROKU' in os.environ:
+    print('hitting ')
+    models.initialize()
 
 if __name__ == "__main__":
     models.initialize()
